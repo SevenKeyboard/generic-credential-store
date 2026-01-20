@@ -53,6 +53,8 @@ class GenericCredentialStore
             ,CRED_PERSIST_LOCAL_MACHINE         := 2
             ,CRED_PERSIST_ENTERPRISE            := 3
             ,CRED_MAX_USERNAME_LENGTH           := (256 + 1 + 256)
+        if (targetName == "" || credentialText == "")
+            return false
         if (CRED_MAX_DOMAIN_TARGET_NAME_LENGTH < strLen(targetName))
             return false
         varSetCapacity(credential, 24 + A_PtrSize * 7, 0)
