@@ -99,8 +99,9 @@ class GenericCredentialStore
         if (found := dllCall("Advapi32.dll\CredReadW", "WStr",targetName
             ,"UInt",CRED_TYPE_GENERIC, "UInt",0, "Ptr*",credential := 0
             ,"Int"))    {
-            userName            := strGet(numGet(credential + 24 + A_PtrSize * 6, "Ptr"), CRED_MAX_USERNAME_LENGTH, "UTF-16")
-            credentialBlobSize  :=        numGet(credential + 16 + A_PtrSize * 2, "UInt")
+            if (p := numGet(credential + 24 + A_PtrSize * 6, "Ptr"))
+                userName        := strGet(p + 0, CRED_MAX_USERNAME_LENGTH, "UTF-16")
+            credentialBlobSize  := numGet(credential + 16 + A_PtrSize * 2, "UInt")
             credentialText      := strGet(numGet(credential + 16 + A_PtrSize * 3, "Ptr"), credentialBlobSize / 2, "UTF-16")
         }
         if (credential)
