@@ -45,7 +45,7 @@ class VersionManager_GenericCredentialStore
 }
 class GenericCredentialStore
 {
-    static set(targetName, credentialText, userName, persist := "Local Machine")    {
+    static set(targetName, credentialText, userName := "", persist := "Local Machine")    {
         static CRED_TYPE_GENERIC                := 1
             ,CRED_MAX_DOMAIN_TARGET_NAME_LENGTH := (256 + 1 + 80)
             ,CRED_MAX_CREDENTIAL_BLOB_SIZE      := (5 * 512)
